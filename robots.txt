@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.jaquelinepsicopedagoga.com.br/sitemap.xml

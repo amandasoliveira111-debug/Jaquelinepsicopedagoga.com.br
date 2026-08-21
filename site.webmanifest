@@ -1,0 +1,14 @@
+{
+  "name": "Psicopedagoga Jaqueline Oliveira Almeida",
+  "short_name": "Jaqueline Psicopedagoga",
+  "description": "Psicopedagogia, Terapia ABA e Psicanálise em Mogi das Cruzes e online.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffdf8",
+  "theme_color": "#1c4a41",
+  "lang": "pt-BR",
+  "icons": [
+    { "src": "/assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
