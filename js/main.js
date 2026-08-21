@@ -153,27 +153,6 @@
   }
 
   /* ------------------------------------------------------------
-     Google Maps — carregamento sob demanda (sem chave de API)
-  ------------------------------------------------------------ */
-  function initMap() {
-    var facade = document.getElementById("map-facade");
-    var frame = document.getElementById("map-frame");
-    if (!facade || !frame) return;
-
-    facade.addEventListener("click", function () {
-      var iframe = document.createElement("iframe");
-      var address = "Rua Otto Unger, 158, Centro, Mogi das Cruzes, SP, 08780-090";
-      iframe.src = "https://www.google.com/maps?q=" + encodeURIComponent(address) + "&output=embed";
-      iframe.title = "Mapa: " + address;
-      iframe.loading = "lazy";
-      iframe.referrerPolicy = "no-referrer-when-downgrade";
-      iframe.setAttribute("allowfullscreen", "");
-      frame.innerHTML = "";
-      frame.appendChild(iframe);
-    }, { once: true });
-  }
-
-  /* ------------------------------------------------------------
      Init
   ------------------------------------------------------------ */
   document.addEventListener("DOMContentLoaded", function () {
@@ -183,7 +162,6 @@
     initReveal();
     initFaq();
     initTestimonials();
-    initMap();
     respectDataAndMotionPreferences();
   });
 })();
