@@ -370,24 +370,20 @@
     <!--
       Para trocar o vídeo de fundo, substitua o arquivo em:
       /assets/video/hero-video.mp4  (recomendado: paisagem, 1280x720 ou maior, sem áudio, poucos MB)
-      O poster (imagem exibida antes/sem o vídeo) fica em /assets/img/hero-poster.jpg
-    -->
-    <!--
-      O vídeo só é carregado via JavaScript (js/main.js) quando a tela é grande
-      o suficiente e a conexão/preferência do usuário permite — assim ele nunca
-      bloqueia o carregamento inicial da página. Sem JS, ou em telas pequenas /
-      conexões lentas / "economizar dados" / prefers-reduced-motion, o poster
-      abaixo permanece como imagem estática.
+      O poster (imagem exibida antes do vídeo carregar, e para quem tem
+      "economizar dados" ou prefers-reduced-motion ativado) fica em
+      /assets/img/hero-poster.jpg — js/main.js remove o vídeo nesses casos.
     -->
     <video
       id="hero-video"
       poster="/assets/img/hero-poster.jpg"
+      autoplay
       muted
       loop
       playsinline
-      preload="none"
+      preload="auto"
       aria-hidden="true">
-      <source data-src="/assets/video/hero-video.mp4" type="video/mp4">
+      <source src="/assets/video/hero-video.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-scrim"></div>

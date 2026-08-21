@@ -67,29 +67,25 @@
   }
 
   /* ------------------------------------------------------------
-     Hero video — carregamento condicional e não bloqueante
+     Hero video — o vídeo usa autoplay nativo (o jeito mais confiável
+     entre navegadores). Aqui só desligamos ele nos casos em que o
+     usuário pediu explicitamente menos dados/movimento — nesses casos
+     o poster (já definido no atributo poster do <video>) permanece.
   ------------------------------------------------------------ */
-  function initHeroVideo() {
+  function respectDataAndMotionPreferences() {
     var video = document.getElementById("hero-video");
     if (!video) return;
-
-    var source = video.querySelector("source[data-src]");
-    if (!source) return;
 
     var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
     var saveData = !!(connection && connection.saveData);
     var slowConnection = !!(connection && /2g/.test(connection.effectiveType || ""));
-    var screenTooSmall = window.innerWidth < 700;
 
-    if (prefersReducedMotion || saveData || slowConnection || screenTooSmall) {
-      return; // mantém apenas o poster estático
+    if (prefersReducedMotion || saveData || slowConnection) {
+      video.pause();
+      video.removeAttribute("src");
+      video.querySelectorAll("source").forEach(function (s) { s.remove(); });
+      video.load();
     }
-
-    source.src = source.getAttribute("data-src");
-    video.load();
-    video.play().catch(function () {
-      /* autoplay pode ser bloqueado pelo navegador — o poster permanece visível */
-    });
   }
 
   /* ------------------------------------------------------------
@@ -188,11 +184,6 @@
     initFaq();
     initTestimonials();
     initMap();
-
-    if (window.requestIdleCallback) {
-      requestIdleCallback(initHeroVideo, { timeout: 2500 });
-    } else {
-      window.addEventListener("load", initHeroVideo);
-    }
+    respectDataAndMotionPreferences();
   });
 })();
