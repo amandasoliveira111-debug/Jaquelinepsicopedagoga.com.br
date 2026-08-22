@@ -153,6 +153,61 @@
   }
 
   /* ------------------------------------------------------------
+     Mapa (Leaflet + OpenStreetMap, sem chave de API) — inicializado
+     só quando a seção entra na tela, para não pesar no carregamento.
+  ------------------------------------------------------------ */
+  function initLocationMap() {
+    var el = document.getElementById("map");
+    if (!el || typeof L === "undefined") return;
+
+    var lat = parseFloat(el.getAttribute("data-lat"));
+    var lng = parseFloat(el.getAttribute("data-lng"));
+
+    var start = function () {
+      var map = L.map(el, {
+        scrollWheelZoom: false,
+        zoomAnimation: !prefersReducedMotion,
+        markerZoomAnimation: !prefersReducedMotion,
+      }).setView([lat, lng], 16);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>',
+        maxZoom: 19,
+      }).addTo(map);
+
+      var icon = L.divIcon({
+        className: "",
+        html: '<svg class="map-pin-icon" viewBox="0 0 24 24" width="40" height="40" style="color:#ea7433"><use href="#ic-pin"/></svg>',
+        iconSize: [40, 40],
+        iconAnchor: [20, 38],
+        popupAnchor: [0, -34],
+      });
+
+      L.marker([lat, lng], { icon: icon, alt: "Psicopedagoga Jaqueline Oliveira Almeida" })
+        .addTo(map)
+        .bindPopup(
+          "<strong>Psicopedagoga Jaqueline Oliveira Almeida</strong>" +
+          "Rua Otto Unger, 158, Centro<br>Mogi das Cruzes, SP, 08780-090<br>" +
+          '<a href="https://share.google/EgalwJV4nq5lJ1RvC" target="_blank" rel="noopener">Abrir no Google Maps</a>'
+        );
+    };
+
+    if ("IntersectionObserver" in window) {
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            start();
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { rootMargin: "200px" });
+      observer.observe(el);
+    } else {
+      start();
+    }
+  }
+
+  /* ------------------------------------------------------------
      Init
   ------------------------------------------------------------ */
   document.addEventListener("DOMContentLoaded", function () {
@@ -162,6 +217,7 @@
     initReveal();
     initFaq();
     initTestimonials();
+    initLocationMap();
     respectDataAndMotionPreferences();
   });
 })();

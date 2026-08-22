@@ -36,6 +36,14 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
+<!--
+  Mapa: Leaflet + OpenStreetMap (sem chave de API).
+  Usado no lugar de um iframe do Google Maps porque bloqueadores de anúncios
+  e proteções de privacidade (Brave Shields, uBlock Origin etc.) comumente
+  bloqueiam por padrão embeds de "google.com/maps".
+-->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
 <link rel="stylesheet" href="/css/style.css">
 
 <!-- ============================================================
@@ -821,12 +829,12 @@
       </div>
 
       <div class="map-frame" id="map-frame">
-        <iframe
-          src="https://www.google.com/maps?q=Rua+Otto+Unger%2C+158%2C+Centro%2C+Mogi+das+Cruzes%2C+SP%2C+08780-090&output=embed"
-          title="Mapa: Rua Otto Unger, 158, Centro, Mogi das Cruzes, SP"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen></iframe>
+        <div
+          id="map"
+          role="img"
+          aria-label="Mapa: Rua Otto Unger, 158, Centro, Mogi das Cruzes, SP"
+          data-lat="-23.5225086"
+          data-lng="-46.1849236"></div>
       </div>
     </div>
 
@@ -982,6 +990,7 @@
   </a>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
 <script src="/js/main.js" defer></script>
 </body>
 </html>

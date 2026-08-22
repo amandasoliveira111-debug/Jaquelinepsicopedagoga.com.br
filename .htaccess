@@ -23,11 +23,12 @@
   Header always set Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 
   # Content-Security-Policy: ajustado para os recursos usados no site
-  # (fontes do Google Fonts, mapa incorporado do Google Maps, WhatsApp/Instagram/TikTok
-  # apenas como links de saída — não como recursos incorporados).
+  # (fontes do Google Fonts, mapa via Leaflet/OpenStreetMap — sem iframe do
+  # Google Maps, que costuma ser bloqueado por bloqueadores de anúncios —,
+  # WhatsApp/Instagram/TikTok apenas como links de saída, não incorporados).
   # Os blocos <script type="application/ld+json"> exigem 'unsafe-inline' em script-src
   # porque o site é HTML estático, sem etapa de build para gerar nonces/hashes.
-  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; frame-src https://www.google.com; connect-src 'self'; object-src 'none'; frame-ancestors 'self'"
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org; media-src 'self'; frame-src 'none'; connect-src 'self'; object-src 'none'; frame-ancestors 'self'"
 </IfModule>
 
 # --------------------------------------------------------------------------

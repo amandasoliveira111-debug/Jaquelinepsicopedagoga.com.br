@@ -982,7 +982,21 @@ section.is-alt { background: var(--color-bg-alt); }
   min-height: 320px;
   background: var(--color-petrol-100);
 }
-.map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+#map { position: absolute; inset: 0; width: 100%; height: 100%; background: var(--color-petrol-100); }
+
+/* Leaflet theming — pin + popup styled to match the brand */
+.map-pin-icon { display: block; overflow: visible; filter: drop-shadow(0 6px 10px rgba(28, 74, 65, 0.35)); }
+.leaflet-popup-content-wrapper {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+.leaflet-popup-content { margin: 0.85rem 1rem; font-family: var(--font-sans); }
+.leaflet-popup-content strong { font-family: var(--font-serif); color: var(--color-brand-dark); display: block; margin-bottom: 0.2rem; }
+.leaflet-popup-content a { color: var(--color-brand); font-weight: 600; }
+.leaflet-popup-tip { background: var(--color-surface); }
+.leaflet-container { font-family: var(--font-sans); }
+.leaflet-control-attribution { font-size: 10px; }
 
 /* -------------------------------------------------------------------------
    19. FAQ accordion
