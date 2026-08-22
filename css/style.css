@@ -697,6 +697,74 @@ section.is-alt { background: var(--color-bg-alt); }
 .topic-chip svg { width: 22px; height: 22px; color: var(--color-brand); flex-shrink: 0; }
 .topic-chip span { font-size: 0.88rem; font-weight: 600; }
 
+.intl-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+  padding: var(--space-lg);
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.intl-callout-icon {
+  width: 52px; height: 52px;
+  border-radius: var(--radius-full);
+  display: grid; place-items: center;
+  background: var(--color-gold-100);
+  color: var(--color-accent-dark);
+  flex-shrink: 0;
+}
+.intl-callout-icon svg { width: 26px; height: 26px; }
+.intl-callout h3 { font-size: 1.15rem; margin-bottom: var(--space-xs); }
+.intl-callout p { color: var(--color-text-muted); font-size: 0.94rem; margin-bottom: var(--space-2xs); }
+.intl-callout p:last-child { margin-bottom: 0; }
+
+@media (max-width: 640px) {
+  .intl-callout { flex-direction: column; }
+}
+
+.achievements { margin-top: var(--space-2xl); }
+.achievements-head { max-width: 620px; margin-inline: auto; text-align: center; margin-bottom: var(--space-lg); }
+.achievements-head h3 { font-size: var(--fs-h3); margin-bottom: var(--space-2xs); }
+.achievements-head p { color: var(--color-text-muted); }
+
+.achievements-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) { .achievements-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.achievement-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg) var(--space-md);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+}
+.achievement-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.achievement-icon {
+  width: 50px; height: 50px;
+  border-radius: var(--radius-full);
+  display: grid; place-items: center;
+  background: var(--color-petrol-100);
+  color: var(--color-brand);
+  margin-bottom: var(--space-sm);
+}
+.achievement-icon svg { width: 24px; height: 24px; }
+.achievement-kicker {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-dark);
+  margin-bottom: var(--space-2xs);
+}
+.achievement-title { font-family: var(--font-serif); font-size: 1.05rem; color: var(--color-brand-dark); margin-bottom: var(--space-2xs); }
+.achievement-card p:last-child { color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 0; }
+
 /* -------------------------------------------------------------------------
    13. How it works — steps
    ------------------------------------------------------------------------- */
